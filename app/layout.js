@@ -9,10 +9,11 @@ const josefin = Josefin_Sans({
 
 
 import "@/app/_styles/globals.css"
+import Header from "./_components/Header";
 
 export const metadata = {
   title : {
-    template: "%s /, The Wild Oasis",
+    template: "%s / The Wild Oasis",
     default: "Welcome / The Wild Oasis"
   },
   description : "Luxurious cabin hotel, located in the heart of the Italian Dolomites, surrounded by beautiful mountains and dark forests"
@@ -21,12 +22,15 @@ export const metadata = {
 export default function Rootlayout({children}) {
   return (
     <html lang='en'>
-      <body className={`${josefin.className} bg-primary-950 text-primary-100 min-h-screen`}>
-        <header>
+      <body className={`${josefin.className} antialiased bg-primary-950 text-primary-100 min-h-screen flex flex-col relative`}>
+        <Header>
           <Logo />
           <Navigation/>
-        </header>
-        <main>{children}</main>
+        </Header>
+        
+        <div className="flex-1 px-8 py-12 grid">
+          <main className="max-w-7xl mx-auto w-full">{children}</main>
+        </div>
       </body>
     </html>
   )
