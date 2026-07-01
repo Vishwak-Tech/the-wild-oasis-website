@@ -1,5 +1,7 @@
 import { eachDayOfInterval } from 'date-fns';
 import { countries } from "./countries";
+import { supabase } from './supabase';
+import { notFound } from 'next/navigation';
 
 /////////////
 // GET
@@ -16,6 +18,7 @@ export async function getCabin(id) {
 
   if (error) {
     console.error(error);
+    notFound()
   }
 
   return data;
@@ -37,13 +40,13 @@ export async function getCabinPrice(id) {
 
 export const getCabins = async function () {
   const { data, error } = await supabase
-    .from('cabins')
-    .select('id, name, maxCapacity, regularPrice, discount, image')
-    .order('name');
+    .from("cabins")
+    .select("id, name, maxCapacity, regularPrice, discount, image")
+    .order("id");
 
   if (error) {
     console.error(error);
-    throw new Error('Cabins could not be loaded');
+    throw error;
   }
 
   return data;
@@ -52,7 +55,7 @@ export const getCabins = async function () {
 // Guests are uniquely identified by their email address
 export async function getGuest(email) {
   const { data, error } = await supabase
-    .from('guests')
+    .from('Guests')
     .select('*')
     .eq('email', email)
     .single();
@@ -155,7 +158,7 @@ export async function getCountries() {
 // CREATE
 
 export async function createGuest(newGuest) {
-  const { data, error } = await supabase.from('guests').insert([newGuest]);
+  const { data, error } = await supabase.from('Guests').insert([newGuest]);
 
   if (error) {
     console.error(error);
@@ -187,7 +190,7 @@ export async function createBooking(newBooking) {
 // The updatedFields is an object which should ONLY contain the updated data
 export async function updateGuest(id, updatedFields) {
   const { data, error } = await supabase
-    .from('guests')
+    .from('Guests')
     .update(updatedFields)
     .eq('id', id)
     .select()
