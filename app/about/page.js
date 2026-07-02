@@ -1,19 +1,24 @@
 import Image from "next/image";
 import about1 from "@/public/about-1.jpg";
 import about2 from "@/public/about-2.jpg";
+import { getCabins } from "../_lib/data-service";
+
+export const revalidate = 86400;
 
 export const metadata = {
     title: "About"
 }
 
-export default function Page() {
+export default async function Page() {
+
+  const cabins = await getCabins()
+
   return (
     <div className="grid grid-cols-5 gap-x-24 gap-y-32 text-lg items-center">
       <div className="col-span-3">
         <h1 className="text-4xl mb-10 text-accent-400 font-medium">
           Welcome to The Wild Oasis
         </h1>
-
 
         <div className="space-y-8">
           <p>
@@ -24,7 +29,7 @@ export default function Page() {
             simple pleasures with family.
           </p>
           <p>
-            Our 8 luxury cabins provide a cozy base, but the real freedom and
+            Our {cabins.length} luxury cabins provide a cozy base, but the real freedom and
             peace you&apos;ll find in the surrounding mountains. Wander through lush
             forests, breathe in the fresh air, and watch the stars twinkle above
             from the warmth of a campfire or your hot tub.
@@ -37,7 +42,6 @@ export default function Page() {
         </div>
       </div>
 
-
       <div className="col-span-2">
         <Image
           src={about1}
@@ -45,7 +49,6 @@ export default function Page() {
           alt="Family sitting around a fire pit in front of cabin"
         />
       </div>
-
 
       <div className="col-span-2">
         <Image 
@@ -55,12 +58,10 @@ export default function Page() {
         />
       </div>
 
-
       <div className="col-span-3">
         <h1 className="text-4xl mb-10 text-accent-400 font-medium">
           Managed by our family since 1962
         </h1>
-
 
         <div className="space-y-8">
           <p>
@@ -77,7 +78,6 @@ export default function Page() {
             Oasis soon, where tradition meets tranquility, and every visit is
             like coming home.
           </p>
-
 
           <div>
             <a
