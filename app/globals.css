@@ -25,3 +25,21 @@ body {
     text-wrap: balance;
   }
 }
+
+/* React Day Picker */
+
+.rdp-root {
+  --rdp-accent-color: rgb(37 99 235);
+}
+
+.rdp-day_selected,
+.rdp-day_range_start,
+.rdp-day_range_end {
+  background-color:  #f59e0b!important;
+  color: white !important;
+}
+
+.rdp-day_range_middle {
+  background-color: #f59e0b !important;
+  color: #1f2937 !important;
+}

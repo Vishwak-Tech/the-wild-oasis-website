@@ -2,6 +2,7 @@ import { Suspense } from "react";
 import CabinList from "../_components/CabinList.js";
 import Spinner from "../_components/Spinner.js";
 import Filter from "../_components/Filter.js";
+import ReservationReminder from "../_components/ReservationReminder.js";
 
 export const revalidate = 3600;
 
@@ -33,6 +34,7 @@ export default function Page({searchParams}) {
 
       <Suspense fallback={<Spinner/>} key={filter}>
         <CabinList filter={filter}/>
+        <ReservationReminder/>
       </Suspense>
     </div>
   );
