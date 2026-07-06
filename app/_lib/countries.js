@@ -5,4 +5,5 @@ export const countries = [
   { name: "Germany", flag: "https://flagcdn.com/de.svg" },
   { name: "France", flag: "https://flagcdn.com/fr.svg" },
   { name: "United Kingdom", flag: "https://flagcdn.com/gb.svg" },
+  { name: "Italy", flag: "https://flagcdn.com/it.svg" }
 ];
